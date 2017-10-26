@@ -36,6 +36,7 @@ class AssetsPage extends React.Component {
   render() {
     return (
       <div className={styles.assets}>
+        <h2>{this.props.courseDetails.name}</h2>
         <h2>Files & Uploads</h2>
         <AssetsFilters />
         <WrappedAssetsTable
@@ -58,6 +59,7 @@ const WrappedAssetsPage = connect(
   state => ({
     assetsList: state.assets.list,
     assetsParameters: state.assets.parameters,
+    courseDetails: state.courseDetails,
   }), dispatch => ({
     getAssets: assetsParameters => dispatch(getAssets(assetsParameters)),
   }),
