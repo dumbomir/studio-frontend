@@ -3,7 +3,9 @@ import { combineReducers } from 'redux';
 import assets from './assets';
 import connectionStatus from './connectionStatus';
 
-const courseDetails = () => { return courseContext; };
+/* eslint-disable no-undef */
+/* eslint-disable arrow-body-style */
+const courseDetails = () => { return courseContext || {}; };
 
 const rootReducer = combineReducers({
   assets,

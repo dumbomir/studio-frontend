@@ -6,9 +6,9 @@ export const requestAssetsSuccess = response => ({
   data: response.assets,
 });
 
-export const getAssets = assetsParameters =>
+export const getAssets = (assetsParameters, courseDetails) =>
   dispatch =>
-    clientApi.requestAssets(assetsParameters.courseId, {
+    clientApi.requestAssets(courseDetails.id, {
       page: assetsParameters.page,
       assetTypes: assetsParameters.assetTypes,
     })
@@ -31,9 +31,9 @@ export const assetXHRFailure = response => ({
   response,
 });
 
-export const deleteAsset = (assetsParameters, assetId) =>
+export const deleteAsset = (assetsParameters, assetId, courseDetails) =>
   dispatch =>
-    clientApi.requestDeleteAsset(assetsParameters.courseId, assetId)
+    clientApi.requestDeleteAsset(courseDetails.id, assetId)
       .then((response) => {
         if (response.ok) {
           dispatch(deleteAssetSuccess(assetId, response));

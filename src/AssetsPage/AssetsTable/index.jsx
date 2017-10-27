@@ -111,7 +111,9 @@ export class AssetsTable extends React.Component {
   }
 
   deleteAsset() {
-    this.props.deleteAsset(this.props.assetsParameters, this.state.assetToDelete.id);
+    this.props.deleteAsset(this.props.assetsParameters,
+      this.state.assetToDelete.id,
+      this.state.courseDetails);
     this.setState({ modalOpen: false });
 
     this.setState({
@@ -229,6 +231,18 @@ AssetsTable.propTypes = {
     response: PropTypes.object,
     type: PropTypes.string,
   }).isRequired,
+  courseDetails: PropTypes.shape({
+    lang: PropTypes.string,
+    url_name: PropTypes.string,
+    name: PropTypes.string,
+    source_of_data: PropTypes.string,
+    display_course_number: PropTypes.string,
+    commit_sha: PropTypes.string,
+    num: PropTypes.string,
+    org: PropTypes.string,
+    id: PropTypes.string,
+    revision: PropTypes.string,
+  }).isRequired,
   deleteAsset: PropTypes.func.isRequired,
   clearAssetsStatus: PropTypes.func.isRequired,
 };
@@ -237,10 +251,12 @@ const mapStateToProps = state => ({
   assetsList: state.assets.list,
   assetsParameters: state.assets.parameters,
   assetsStatus: state.assets.status,
+  courseDetails: state.courseDetails,
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteAsset: (assetsParameters, assetId) => dispatch(deleteAsset(assetsParameters, assetId)),
+  deleteAsset: (assetsParameters, assetId, courseDetails) =>
+    dispatch(deleteAsset(assetsParameters, assetId, courseDetails)),
   clearAssetsStatus: () => dispatch(clearAssetsStatus()),
 });
 
