@@ -113,7 +113,7 @@ export class AssetsTable extends React.Component {
   deleteAsset() {
     this.props.deleteAsset(this.props.assetsParameters,
       this.state.assetToDelete.id,
-      this.state.courseDetails);
+      this.props.courseDetails);
     this.setState({ modalOpen: false });
 
     this.setState({
